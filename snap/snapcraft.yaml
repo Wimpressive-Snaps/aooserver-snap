@@ -1,0 +1,37 @@
+name: aooserver
+base: core20
+adopt-info: aooserver
+summary: AoO console server
+description: |
+  This is the standalone connection server for use with SonoBus which uses AOO.
+
+grade: stable
+confinement: strict
+compression: lzo
+
+parts:
+  aooserver:
+    plugin: make
+    source: https://github.com/essej/aooserver.git
+    build-environment:
+      - CONFIG: "Release"
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git rev-parse --short HEAD)"
+    override-build: |
+      cd $SNAPCRAFT_PART_SRC/Builds/LinuxMakefile
+      make -j $(nproc)
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp -a $SNAPCRAFT_PART_SRC/Builds/LinuxMakefile/build/aooserver $SNAPCRAFT_PART_INSTALL/bin/
+    build-packages:
+      - libcurl4-openssl-dev
+      - pkg-config
+    stage-packages:
+      - libcurl4
+
+apps:
+  aooserver:
+    command: bin/aooserver
+    plugs:
+      - network
+      - network-bind
