@@ -3,7 +3,9 @@
 [![aooserver](https://snapcraft.io/aooserver/badge.svg)](https://snapcraft.io/aooserver)
 [![aooserver](https://snapcraft.io/aooserver/trending.svg?name=0)](https://snapcraft.io/aooserver)
 
-This is the standalone connection server for use with SonoBus which uses AOO.
+This is the standalone connection server for use with [SonoBus](https://sonobus.net/) which uses AOO.
+The connection server is only used to help users find each other, no audio passes through it. All
+audio is sent directly between users (peer to peer).
 
 An unofficial snap built with ❤︎ by Martin Wimpress using configuration at 
 <https://github.com/Wimpressive-Snaps/aooserver-snap> from the upstream project source <https://github.com/essej/aooserver>
